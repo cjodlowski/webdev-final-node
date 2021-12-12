@@ -21,6 +21,7 @@ app.use(function (req, res, next) {
 });
 
 require("./users/user-service")(app);
+require("./items/items-service")(app);
 
 
 app.listen(process.env.PORT || 4000);
