@@ -10,6 +10,7 @@ const usersSchema = mongoose.Schema(
         loggedIn: Boolean,
         bookmarks: Array,
         following: Array,
+        selling: Array,
         cart: Array,
         role: {type : String, enum: ["BUYER", "SELLER"]},
         profile: String

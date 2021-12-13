@@ -2,7 +2,7 @@ const dao = require("./items-dao");
 module.exports = (app) => {
     const showAllItems = (req, res) => {
         dao.showAllItems()
-        .then((items) => res.json(items));
+        .then((items) => {console.log("Found all items");;res.json(items)});
     }
 
     const showFiltered = (req, res) => {
@@ -35,11 +35,11 @@ module.exports = (app) => {
             .then((item) => res.json(item));
     }
 
-    app.get("api/items", showAllItems);
-    app.get("api/items", showFeatured);
-    app.get("api/items", showFiltered);
-    app.get("api/items", showSearchResults);
-    app.post("api/items", createItem);
-    app.delete("api/items/:id", deleteItem);
-    app.post("api/items/:id", updateRating);
+    app.get("/api/items", showAllItems);
+    app.get("/api/items/featured", showFeatured);
+    app.get("/api/items/filtered", showFiltered);
+    app.get("/api/items/search", showSearchResults);
+    app.post("/api/items", createItem);
+    app.delete("/api/items/:id", deleteItem);
+    app.post("/api/items/:id", updateRating);
 }

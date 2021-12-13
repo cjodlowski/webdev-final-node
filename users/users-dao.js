@@ -43,6 +43,14 @@ const removeFromCart = (id, cid) =>
 const findLoggedIn = () => 
     userModel.findOne({loggedIn : true});
 
+const addToSelling = (id, sid) => {
+    userModel.updateOne({_id: id}, {$push: {selling : sid}});
+}
+
+const removeFromSelling = (id, sid) => {
+    userModel.updateOne({_id: id}, {$pull: {selling : sid}});
+}
+
 
 module.exports = {
     findUserbyId,
@@ -55,5 +63,7 @@ module.exports = {
     removeFollow,
     addToCart,
     removeFromCart,
+    addToSelling,
+    removeFromSelling,
     findLoggedIn
 }

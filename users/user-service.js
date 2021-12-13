@@ -56,16 +56,28 @@ module.exports = (app) => {
         .then((status) => console.log("Removed from cart " + status));
     }
 
+    const addToSelling = (req, res) => {
+        dao.addToSelling(req.params.id, req.body)
+        .then((status) => console.log("Added to now selling " + status));
+    }
+
+    const removeFromSelling = (req, res) => {
+        dao.removeFromSelling(req.params.id, req.body)
+        .then((status) => console.log("Removed from now selling " + status));
+    }
+
 
     app.get("/api/users/:id", findUser);
     app.get("/api/usersloggedin/", findLoggedIn);
     app.post("/api/users", createUser);
-    app.post("/api/users/:id", login);
-    app.post("/api/users/:id", logout);
-    app.post("/api/users/:id", addBookmark);
-    app.post("/api/users/:id", removeBookmark);
-    app.post("/api/users/:id", addFollow);
-    app.post("/api/users/:id", removeFollow);
-    app.post("/api/users/:id", addToCart);
-    app.post("/api/users/:id", removeFromCart);
+    app.post("/api/users/login/:id", login);
+    app.post("/api/users/logout/:id", logout);
+    app.post("/api/users/addBookmark:id", addBookmark);
+    app.post("/api/users/removeBookmark:id", removeBookmark);
+    app.post("/api/users/addFollow:id", addFollow);
+    app.post("/api/users/removeFollow:id", removeFollow);
+    app.post("/api/users/addCart:id", addToCart);
+    app.post("/api/users/removeCart:id", removeFromCart);
+    app.post("/api/users/addSelling:id", addToSelling);
+    app.post("/api/users/removeSelling:id", removeFromSelling);
 }

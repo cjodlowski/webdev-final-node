@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb+srv://cs4550:cs4550@cluster0.twrt7.mongodb.net/tests');
-
+const mongoose = require('mongoose');
+ mongoose.connect('mongodb+srv://cs4550:cs4550@cluster0.twrt7.mongodb.net/final');
 
 // this is to help us parse the body
 const bodyParser = require('body-parser');
@@ -20,8 +19,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+//app.get("/api/items", function(req, res) {res.send("hello!!!")});
+//app.get("/api/items", function(req, res) {res.send("wooowoaoaowaoh")});
+
 require("./users/user-service")(app);
 require("./items/items-service")(app);
 
-
-app.listen(process.env.PORT || 4000);
+app.listen(4000);
