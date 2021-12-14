@@ -7,7 +7,7 @@ const showFiltered = (tagarr) =>
     itemsModel.find({tags: {$all: tagarr}});
     
 const showSearchResults = (str) => 
-    itemsModel.find({$or: [{seller : str}, {title : str}]});
+    itemsModel.find({$or: [{seller : str}, {title : str}, {tags: str}]});
 
 const showFeatured = () => 
     itemsModel.find({featured: true});
