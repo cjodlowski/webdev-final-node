@@ -1,10 +1,11 @@
 const dao = require("./users-dao");
+const mongoose = require('mongoose');
 
 
 module.exports = (app) => {
     const findUser = (req, res) => {
         dao.findUserbyId(req.params.id)
-        .then((user) => res.json(user));
+        .then((user) => {res.json(user)});
     }
 
     const createUser = (req, res) => {
@@ -47,6 +48,12 @@ module.exports = (app) => {
         .then((status) => console.log("Removed follower " + status));
     }
 
+    const findAll = (req, res) => {
+        dao.findAllUsers()
+        .then((results) => {res.json(results)});
+    }
+
+    app.get("/api/users", findAll)
     app.get("/api/users/:id", findUser);
     app.get("/api/usersloggedin/", findLoggedIn);
     app.post("/api/users", createUser);
