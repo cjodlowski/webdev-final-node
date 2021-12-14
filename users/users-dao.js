@@ -16,12 +16,12 @@ const logout = (id) =>
     userModel.updateOne({_id: id}, {$set : {loggedIn : false}});
 
 
-const addBookmark = (id, bid) => 
-    userModel.updateOne({_id: id}, {$push: {bookmarks : bid}});
+const addItemToList = (id, iid, list) => 
+    userModel.updateOne({_id: id}, {$push: {list : iid}});
 
 
-const removeBookmark = (id, bid) => 
-    userModel.updateOne({_id: id}, {$pull: {bookmarks : bid}});
+const removeItemFromList = (id, iid, list) => 
+    userModel.updateOne({_id: id}, {$pull: {list : iid}});
 
 
 const addFollow = (id, uid) => 
@@ -32,24 +32,8 @@ const removeFollow = (id, uid) =>
     userModel.updateOne({_id: id}, {$pull: {following : uid}});
 
 
-const addToCart = (id, cid) => 
-    userModel.updateOne({_id: id}, {$push: {cart : cid}});
-
-
-const removeFromCart = (id, cid) => 
-    userModel.updateOne({_id: id}, {$pull: {cart : cid}});
-
-
 const findLoggedIn = () => 
     userModel.findOne({loggedIn : true});
-
-const addToSelling = (id, sid) => {
-    userModel.updateOne({_id: id}, {$push: {selling : sid}});
-}
-
-const removeFromSelling = (id, sid) => {
-    userModel.updateOne({_id: id}, {$pull: {selling : sid}});
-}
 
 
 module.exports = {
@@ -57,13 +41,9 @@ module.exports = {
     createUser,
     login,
     logout,
-    addBookmark,
-    removeBookmark,
+    addItemToList,
+    removeItemFromList,
     addFollow,
     removeFollow,
-    addToCart,
-    removeFromCart,
-    addToSelling,
-    removeFromSelling,
     findLoggedIn
 }

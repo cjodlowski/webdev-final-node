@@ -1,5 +1,6 @@
 const dao = require("./users-dao");
 
+
 module.exports = (app) => {
     const findUser = (req, res) => {
         dao.findUserbyId(req.params.id)
@@ -26,13 +27,13 @@ module.exports = (app) => {
         .then((user) => res.json(user))
     }
 
-    const addBookmark = (req, res) => {
-        dao.addBookmark(req.params.id, req.body)
+    const addItemToList = (req, res) => {
+        dao.addItemToList(req.params.id, req.body.iid, req.body.list)
         .then((status) => console.log("Added bookmark " + status));
     }
 
-    const removeBookmark = (req, res) => {
-        dao.removeBookmark(req.params.id, req.body)
+    const removeItemFromList = (req, res) => {
+        dao.removeItemFromList(req.params.id, req.body.iid, req.body.list)
         .then((status) => console.log("Removed bookmark " + status));
     }
 
@@ -46,38 +47,13 @@ module.exports = (app) => {
         .then((status) => console.log("Removed follower " + status));
     }
 
-    const addToCart = (req, res) => {
-        dao.addToCart(req.params.id, req.body)
-        .then((status) => console.log("Added to cart " + status));
-    }
-
-    const removeFromCart = (req, res) => {
-        dao.removeFromCart(req.params.id, req.body)
-        .then((status) => console.log("Removed from cart " + status));
-    }
-
-    const addToSelling = (req, res) => {
-        dao.addToSelling(req.params.id, req.body)
-        .then((status) => console.log("Added to now selling " + status));
-    }
-
-    const removeFromSelling = (req, res) => {
-        dao.removeFromSelling(req.params.id, req.body)
-        .then((status) => console.log("Removed from now selling " + status));
-    }
-
-
     app.get("/api/users/:id", findUser);
     app.get("/api/usersloggedin/", findLoggedIn);
     app.post("/api/users", createUser);
     app.post("/api/users/login/:id", login);
     app.post("/api/users/logout/:id", logout);
-    app.post("/api/users/addBookmark:id", addBookmark);
-    app.post("/api/users/removeBookmark:id", removeBookmark);
-    app.post("/api/users/addFollow:id", addFollow);
-    app.post("/api/users/removeFollow:id", removeFollow);
-    app.post("/api/users/addCart:id", addToCart);
-    app.post("/api/users/removeCart:id", removeFromCart);
-    app.post("/api/users/addSelling:id", addToSelling);
-    app.post("/api/users/removeSelling:id", removeFromSelling);
+    app.post("/api/users/addItem/:id", addItemToList);
+    app.post("/api/users/removeItem/:id", removeItemFromList);
+    app.post("/api/users/addFollow/:id", addFollow);
+    app.post("/api/users/removeFollow/:id", removeFollow);
 }

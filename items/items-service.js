@@ -2,7 +2,7 @@ const dao = require("./items-dao");
 module.exports = (app) => {
     const showAllItems = (req, res) => {
         dao.showAllItems()
-        .then((items) => {console.log("Found all items");;res.json(items)});
+        .then((items) => {res.json(items)});
     }
 
     const showFiltered = (req, res) => {
@@ -11,7 +11,7 @@ module.exports = (app) => {
     }
 
     const showSearchResults = (req, res) => {
-        dao.showSearchResults(req.body)
+        dao.showSearchResults(req.body.str)
             .then((items) => res.json(items));
     }
 
