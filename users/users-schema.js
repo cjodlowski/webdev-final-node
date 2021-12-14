@@ -13,7 +13,9 @@ const usersSchema = mongoose.Schema(
         selling: Array,
         cart: Array,
         role: {type : String, enum: ["BUYER", "SELLER"]},
-        profile: String
+        profile: String,
+        phone: Number,
+
     },
     {collection: "users"}
 )
