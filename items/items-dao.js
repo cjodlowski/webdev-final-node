@@ -20,6 +20,9 @@ const deleteItem = (id) =>
 
 const updateRating = (id, newrating) => 
     itemsModel.updateOne({_id : id}, {$set:{rating : newrating}});
+    
+const findItemById = (iid) => 
+    itemsModel.findById(iid);
 
 module.exports = {
     showAllItems,
@@ -28,5 +31,6 @@ module.exports = {
     showFeatured,
     createItem,
     deleteItem,
-    updateRating
+    updateRating,
+    findItemById
 }

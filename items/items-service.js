@@ -36,7 +36,13 @@ module.exports = (app) => {
             .then((item) => res.json(item));
     }
 
+    const showById = (req, res) => {
+        dao.findItemById(req.params.id)
+        .then((item) => res.json(item));
+    }
+
     app.get("/api/items", showAllItems);
+    app.get("/api/items/:id", showById);
     app.get("/api/items/featured", showFeatured);
     app.get("/api/items/filtered", showFiltered);
     app.get("/api/items/search/:searchTerm", showSearchResults);
