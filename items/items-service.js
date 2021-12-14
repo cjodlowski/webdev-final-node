@@ -42,7 +42,7 @@ module.exports = (app) => {
     }
 
     app.get("/api/items", showAllItems);
-    app.get("/api/items/:id", showById);
+    app.get("/api/items/id/:id", showById);
     app.get("/api/items/featured", showFeatured);
     app.get("/api/items/filtered", showFiltered);
     app.get("/api/items/search/:searchTerm", showSearchResults);

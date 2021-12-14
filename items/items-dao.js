@@ -10,7 +10,7 @@ const showSearchResults = (str) =>
     itemsModel.find({$or: [{seller : str}, {title : str}, {tags: str}]});
 
 const showFeatured = () => 
-    itemsModel.find({featured: true});
+    itemsModel.find({featured : true});
 
 const createItem = (item) =>
     itemsModel.create(item);
