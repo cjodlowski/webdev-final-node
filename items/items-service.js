@@ -44,9 +44,9 @@ module.exports = (app) => {
     app.get("/api/items", showAllItems);
     app.get("/api/items/id/:id", showById);
     app.get("/api/items/featured", showFeatured);
-    app.get("/api/items/filtered", showFiltered);
+    app.post("/api/items/filtered", showFiltered);
     app.get("/api/items/search/:searchTerm", showSearchResults);
     app.post("/api/items", createItem);
-    app.delete("/api/items/:id", deleteItem);
-    app.post("/api/items/:id", updateRating);
+    app.delete("/api/items/id/:id", deleteItem);
+    app.post("/api/items/id/:id", updateRating);
 }

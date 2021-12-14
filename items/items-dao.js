@@ -3,8 +3,8 @@ const itemsModel = require("./items-model");
 const showAllItems = () => 
     itemsModel.find();
 
-const showFiltered = (tagarr) =>
-    itemsModel.find({tags: {$all: tagarr}});
+const showFiltered = (idarr) =>
+    itemsModel.find({_id : {$in : idarr}})
     
 const showSearchResults = (str) => 
     itemsModel.find({$or: [{seller : str}, {title : str}, {tags: str}]});
