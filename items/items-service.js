@@ -11,8 +11,9 @@ module.exports = (app) => {
     }
 
     const showSearchResults = (req, res) => {
-        dao.showSearchResults(req.body.str)
-            .then((items) => res.json(items));
+        //console.log(req.params.searchTerm);
+        dao.showSearchResults(req.params.searchTerm)
+            .then((items) => {res.json(items)});
     }
 
     const showFeatured = (req, res) => {
@@ -38,7 +39,7 @@ module.exports = (app) => {
     app.get("/api/items", showAllItems);
     app.get("/api/items/featured", showFeatured);
     app.get("/api/items/filtered", showFiltered);
-    app.get("/api/items/search", showSearchResults);
+    app.get("/api/items/search/:searchTerm", showSearchResults);
     app.post("/api/items", createItem);
     app.delete("/api/items/:id", deleteItem);
     app.post("/api/items/:id", updateRating);
