@@ -6,6 +6,9 @@ const findAllUsers = () =>
 const findUserbyId = (uid) => 
     userModel.findById(uid);
 
+const findUserbyUN = (un) =>
+    userModel.findOne({username : un});
+
 const createUser = (user) => 
     userModel.create(user);
 
@@ -40,6 +43,7 @@ const findLoggedIn = () =>
 
 module.exports = {
     findUserbyId,
+    findUserbyUN,
     createUser,
     login,
     logout,
