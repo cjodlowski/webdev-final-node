@@ -2,7 +2,7 @@ const dao = require("./items-dao");
 module.exports = (app) => {
     const showAllItems = (req, res) => {
         dao.showAllItems()
-        .then((items) => {res.json(items)});
+        .then((items) => {return res.json(items)});
     }
 
     const showFiltered = (req, res) => {
@@ -19,7 +19,7 @@ module.exports = (app) => {
     const showSearchResults = (req, res) => {
         //console.log(req.params.searchTerm);
         dao.showSearchResults(req.params.searchTerm)
-            .then((items) => {res.json(items)});
+            .then((items) => {return res.json(items)});
     }
 
     const showFeatured = (req, res) => {

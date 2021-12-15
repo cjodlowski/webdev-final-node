@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 module.exports = (app) => {
     const findUser = (req, res) => {
         dao.findUserbyId(req.params.id)
-        .then((user) => {res.json(user)});
+        .then((user) => {return res.json(user)});
     }
     const findUserUN = (req, res) => {
         dao.findUserbyUN(req.params.UN)
-        .then((user) => {res.json(user)});
+        .then((user) => {return res.json(user)});
     }
 
     const createUser = (req, res) => {
@@ -60,7 +60,7 @@ module.exports = (app) => {
 
     const findAll = (req, res) => {
         dao.findAllUsers()
-        .then((results) => {res.json(results)});
+        .then((results) => {return res.json(results)});
     }
 
     app.get("/api/users", findAll)
