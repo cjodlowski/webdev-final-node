@@ -12,7 +12,7 @@ module.exports = (app) => {
           } else {
               //console.log('Object good');
             dao.showFiltered(req.body)
-            .then((items) => {console.log(items); res.json(items);});
+            .then((items) => {return res.json(items);});
           }
     }
 
@@ -29,7 +29,7 @@ module.exports = (app) => {
 
     const createItem = (req, res) => {
         dao.createItem(req.body)
-            .then(status => console.log("created an item " + status));
+            .then(status => res.json(status));
     }
 
     const deleteItem = (req, res) => {

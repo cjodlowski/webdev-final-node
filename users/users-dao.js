@@ -11,6 +11,9 @@ const findUserbyUN = (un) =>
 
 const createUser = (user) => 
     userModel.create(user);
+    
+const updateUser = (id, updates) =>
+    userModel.updateOne({_id: id}, updates);
 
 
 const login = (id) => 
@@ -21,12 +24,12 @@ const logout = (id) =>
     userModel.updateOne({_id: id}, {$set : {loggedIn : false}});
 
 
-const addItemToList = (id, iid, list) => 
-    userModel.updateOne({_id: id}, {$push: {list : iid}});
+const addItemToList = (id, iid, ll) => 
+    userModel.updateOne({_id: id}, {$push: {[ll] : iid}});
 
 
-const removeItemFromList = (id, iid, list) => 
-    userModel.updateOne({_id: id}, {$pull: {list : iid}});
+const removeItemFromList = (id, iid, li) => 
+    userModel.updateOne({_id: id}, {$pull: {[li] : iid}});
 
 
 const addFollow = (id, uid) => 
@@ -45,6 +48,7 @@ module.exports = {
     findUserbyId,
     findUserbyUN,
     createUser,
+    updateUser,
     login,
     logout,
     addItemToList,

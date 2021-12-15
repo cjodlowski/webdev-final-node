@@ -17,6 +17,11 @@ module.exports = (app) => {
             .then((user) => res.json(user));
     }
 
+    const editUser = (req, res) => {
+        dao.updateUser(req.params.id, req.body)
+        .then((status) => console.log("Updated User " + status));
+    }
+
     const login = (req, res) => {
         dao.login(req.params.id)
         .then((status) => console.log("Logged in " + status));
@@ -30,12 +35,12 @@ module.exports = (app) => {
     const findLoggedIn = (req, res) => {
 
         dao.findLoggedIn()
-        .then((user) => {console.log("Found logged in " + user); return res.json(user)});
+        .then((user) => {return res.json(user)});
     }
 
     const addItemToList = (req, res) => {
         dao.addItemToList(req.params.id, req.body.iid, req.body.list)
-        .then((status) => console.log("Added bookmark " + status));
+        .then((status) => console.log("Added item " + status));
     }
 
     const removeItemFromList = (req, res) => {
@@ -63,6 +68,8 @@ module.exports = (app) => {
     app.get("/api/users/un/:UN", findUserUN);
     app.get("/api/usersloggedin/", findLoggedIn);
     app.post("/api/users", createUser);
+    app.put("/api/users/:id", editUser)
+    app.post("/api/users/edit/:id", )
     app.post("/api/users/login/:id", login);
     app.post("/api/users/logout/:id", logout);
     app.post("/api/users/addItem/:id", addItemToList);
