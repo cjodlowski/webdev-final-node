@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
  mongoose.connect('mongodb+srv://cs4550:cs4550@cluster0.twrt7.mongodb.net/final');
 
- //const fetch = require("node-fetch");
+ const fetch = require("node-fetch");
 
 // this is to help us parse the body
 const bodyParser = require('body-parser');
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept");
+    "Origin, X-Requested-With, Content-Type, Accept, Credentials");
   res.header("Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Credentials", "true");

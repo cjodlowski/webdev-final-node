@@ -7,6 +7,10 @@ module.exports = (app) => {
         dao.findUserbyId(req.params.id)
         .then((user) => {res.json(user)});
     }
+    const findUserUN = (req, res) => {
+        dao.findUserbyUN(req.params.UN)
+        .then((user) => {res.json(user)});
+    }
 
     const createUser = (req, res) => {
         dao.createUser(req.body)
@@ -56,6 +60,7 @@ module.exports = (app) => {
 
     app.get("/api/users", findAll)
     app.get("/api/users/:id", findUser);
+    app.get("/api/users/un/:UN", findUserUN);
     app.get("/api/usersloggedin/", findLoggedIn);
     app.post("/api/users", createUser);
     app.post("/api/users/login/:id", login);
