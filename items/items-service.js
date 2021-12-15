@@ -6,8 +6,14 @@ module.exports = (app) => {
     }
 
     const showFiltered = (req, res) => {
-        dao.showFiltered(req.body)
-            .then((items) => res.json(items));
+        console.log(req.body);
+        if(!req.body) {
+            console.log('Object missing');
+          } else {
+              //console.log('Object good');
+            dao.showFiltered(req.body)
+            .then((items) => {console.log(items); res.json(items);});
+          }
     }
 
     const showSearchResults = (req, res) => {

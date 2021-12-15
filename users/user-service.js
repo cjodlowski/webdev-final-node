@@ -24,8 +24,9 @@ module.exports = (app) => {
     }
 
     const findLoggedIn = (req, res) => {
+
         dao.findLoggedIn()
-        .then((user) => res.json(user))
+        .then((user) => {console.log("Found logged in " + user); return res.json(user)});
     }
 
     const addItemToList = (req, res) => {
