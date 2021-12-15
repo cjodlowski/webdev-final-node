@@ -9,7 +9,8 @@ const itemsSchema = mongoose.Schema(
         rating: Number,
         tags: Array,
         featured: Boolean,
-        seller : String
+        seller : String,
+        desc: String
     },
     {collection : "shopitems"}
 )
